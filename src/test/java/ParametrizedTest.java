@@ -11,9 +11,9 @@ import java.util.Collection;
 @RunWith(Parameterized.class)
 public class ParametrizedTest {
     private static WebDriver chromeDriver;
-    private static String baseUrl = "https://www.rgs.ru/products/private_person/health/dms/generalinfo/index.wbp";
+    private static String baseUrl = "https://www.rgs.ru/";
     private static RgsRequest rgsRequest;
-
+    private static RgsStart rgsStart;
 
 
     @Parameterized.Parameters
@@ -42,9 +42,12 @@ public class ParametrizedTest {
         chromeDriver = new ChromeDriver();
         chromeDriver.manage().window().maximize();
 
-      rgsRequest = PageFactory.initElements(chromeDriver, RgsRequest.class);
+        rgsRequest = PageFactory.initElements(chromeDriver, RgsRequest.class);
+        rgsStart = PageFactory.initElements(chromeDriver, RgsStart.class);
 
         rgsRequest.open(baseUrl);
+        rgsStart.getDmsPage();
+        rgsStart.checkLinkDms();
 
         rgsRequest.verificationLinkDms();
         rgsRequest.openSendRequestForm();
@@ -54,7 +57,6 @@ public class ParametrizedTest {
     }
 
 
-
     @Test
     public void chromeTesting() throws Exception {
 
@@ -62,7 +64,7 @@ public class ParametrizedTest {
         rgsRequest.fillFirstName(firstName);
         rgsRequest.fillMiddleName(middleName);
 
-        //Thread.sleep(5000);
+
         rgsRequest.fillRegion("Москва");
         rgsRequest.fillEmail("qwertyqwerty");
         rgsRequest.fillPhone("8005553535");
@@ -70,9 +72,7 @@ public class ParametrizedTest {
         rgsRequest.fillDate("12.12.2019");
         rgsRequest.checkBoxClicker();
 
-
         rgsRequest.buttonM_Clicker();
-        Thread.sleep(3000);
 
         rgsRequest.checkLastName(lastName);
         rgsRequest.checkFirstName(firstName);

@@ -170,6 +170,9 @@ public class RgsRequest {
     }
 
     public void checkCheckBox(){
+        if (!checkBoxElement.isSelected()){
+            checkBoxElement.click();
+        }
         Assert.assertEquals(checkBoxElement.isSelected(),true);
     }
 
