@@ -18,9 +18,9 @@ public class ParametrizedTest {
     @Parameterized.Parameters
     public static Collection<Object[]> data() {
         return Arrays.asList(new Object[][]{
-                {"Иванов", "Иван", "Иванович"},
-                {"Петров", "Петр", "Петрович"},
-                {"Сергеев", "Сергей", "Сергеевич"}
+                {"Путин", "Владимир", "Владимирович"},
+                {"Медведев", "Дмитрий", "Анатольевич"},
+                {"Трамп", "Дональд", "Джон"}
         });
     }
 
@@ -35,7 +35,7 @@ public class ParametrizedTest {
 
     @BeforeClass
     public static void setUp() throws Exception {
-        System.setProperty("webdriver.gecko.driver", "drv/newgeckodriver.exe");
+        System.setProperty("webdriver.gecko.driver", "drv/geckodriver.exe");
         System.setProperty("webdriver.chrome.driver", "drv/chromedriver.exe");
 
         chromeDriver = new ChromeDriver();
@@ -48,22 +48,40 @@ public class ParametrizedTest {
         rgsRequest.verificationLinkDms();
         rgsRequest.openSendRequestForm();
         rgsRequest.verificationTitle();
+
+        rgsRequest.fillRegion("Москва");
+        rgsRequest.fillEmail("qwertyqwerty");
+        rgsRequest.fillPhone("8005553535");
+        rgsRequest.fillComment("Без комментариев.");
+        rgsRequest.fillDate("12.12.2019");
+        rgsRequest.checkBoxClicker();
     }
 
 
 
-    @Test(timeout=50000)
+    @Test
     public void chromeTesting() throws Exception {
 
+        rgsRequest.fillLastName(lastName);
+        rgsRequest.fillFirstName(firstName);
+        rgsRequest.fillMiddleName(middleName);
+
+        //Thread.sleep(5000);
 
 
-        rgsRequest.fillLastName(""+lastName);
-        rgsRequest.fillFirstName(""+firstName);
-        rgsRequest.fillMiddleName(""+middleName);
 
-        rgsRequest.checkLastName(""+lastName);
-        rgsRequest.checkFirstName(""+firstName);
-        rgsRequest.checkMiddleName(""+middleName);
+        rgsRequest.buttonM_Clicker();
+        Thread.sleep(3000);
+
+        rgsRequest.checkLastName(lastName);
+        rgsRequest.checkFirstName(firstName);
+        rgsRequest.checkMiddleName(middleName);
+        rgsRequest.checkRegion("Москва");
+        rgsRequest.checkEmail("qwertyqwerty");
+        rgsRequest.checkErrorEmail("Введите адрес электронной почты");
+        rgsRequest.checkPhone("+7 (800) 555-35-35");
+        rgsRequest.checkComment("Без комментариев.");
+        rgsRequest.checkDate("12.12.2019");
     }
 
     @AfterClass

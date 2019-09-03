@@ -161,9 +161,9 @@ public class RgsRequest {
     }
 
     public void checkErrorEmail(String errorMessage) {
-//        assertEquals("Введите адрес электронной почты", (emailElement).getText());
+
         assertEquals("Введите адрес электронной почты",
-                driver.findElement(By.xpath("//*[text()='Эл. почта']/..//span[@class='validation-error-text']")).getText());
+                driver.findElement(By.xpath("//span[@class='validation-error-text']")).getText());
         System.out.println(emailErrorMassageElement.getText().equals(errorMessage));
     }
 
