@@ -15,6 +15,7 @@ public class ParametrizedTest {
     private static RgsRequest rgsRequest;
 
 
+
     @Parameterized.Parameters
     public static Collection<Object[]> data() {
         return Arrays.asList(new Object[][]{
@@ -49,12 +50,7 @@ public class ParametrizedTest {
         rgsRequest.openSendRequestForm();
         rgsRequest.verificationTitle();
 
-        rgsRequest.fillRegion("Москва");
-        rgsRequest.fillEmail("qwertyqwerty");
-        rgsRequest.fillPhone("8005553535");
-        rgsRequest.fillComment("Без комментариев.");
-        rgsRequest.fillDate("12.12.2019");
-        rgsRequest.checkBoxClicker();
+
     }
 
 
@@ -67,7 +63,12 @@ public class ParametrizedTest {
         rgsRequest.fillMiddleName(middleName);
 
         //Thread.sleep(5000);
-
+        rgsRequest.fillRegion("Москва");
+        rgsRequest.fillEmail("qwertyqwerty");
+        rgsRequest.fillPhone("8005553535");
+        rgsRequest.fillComment("Без комментариев.");
+        rgsRequest.fillDate("12.12.2019");
+        rgsRequest.checkBoxClicker();
 
 
         rgsRequest.buttonM_Clicker();
@@ -82,6 +83,7 @@ public class ParametrizedTest {
         rgsRequest.checkPhone("+7 (800) 555-35-35");
         rgsRequest.checkComment("Без комментариев.");
         rgsRequest.checkDate("12.12.2019");
+        rgsRequest.checkCheckBox();
     }
 
     @AfterClass

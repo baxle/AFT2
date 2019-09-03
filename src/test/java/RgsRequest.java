@@ -1,3 +1,4 @@
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -13,6 +14,7 @@ public class RgsRequest {
 
     private WebDriver driver;
     private Wait<WebDriver> wait;
+    private static boolean evenOneIsUnchecked;
 
     public RgsRequest(WebDriver driver) {
         this.driver = driver;
@@ -165,6 +167,10 @@ public class RgsRequest {
         assertEquals("Введите адрес электронной почты",
                 driver.findElement(By.xpath("//span[@class='validation-error-text']")).getText());
         System.out.println(emailErrorMassageElement.getText().equals(errorMessage));
+    }
+
+    public void checkCheckBox(){
+        Assert.assertEquals(checkBoxElement.isSelected(),true);
     }
 
 
